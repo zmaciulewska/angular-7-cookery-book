@@ -1,0 +1,45 @@
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="recipeForm" novalidate>
+      <div class="form-group">
+        <label class="col-md-4">Title</label>
+        <input formControlName="recipe_title"
+        #recipe_title [(ngModel)] = "recipe.recipe_title" type="text" class="form-control" />
+      </div>
+      <div *ngIf="recipeForm.controls['recipe_title'].invalid && (recipeForm.controls['recipe_title'].dirty || recipeForm.controls['recipe_title'].touched)"
+        class="alert alert-danger">
+        <div *ngIf="recipeForm.controls['recipe_title'].errors.required">
+          Recipe title is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Instruction</label>
+        <input formControlName="recipe_instruction" 
+        #recipe_instruction [(ngModel)] = "recipe.recipe_instruction"
+        type="text" class="form-control" />
+      </div>
+      <div *ngIf="recipeForm.controls['recipe_instruction'].invalid && (recipeForm.controls['recipe_instruction'].dirty || recipeForm.controls['recipe_instruction'].touched)" class="alert alert-danger">
+        <div *ngIf="recipeForm.controls['recipe_instruction'].errors.required">
+          Recipe instruction is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Preparation time</label>
+        <input formControlName="recipe_prepTime" 
+        #recipe_prepTime [(ngModel)] = "recipe.recipe_prepTime"
+        type="text" class="form-control" />
+      </div>
+      <div *ngIf="recipeForm.controls['recipe_prepTime'].invalid && (recipeForm.controls['recipe_prepTime'].dirty || recipeForm.controls['recipe_prepTime'].touched)" class="alert alert-danger">
+        <div *ngIf="recipeForm.controls['recipe_prepTime'].errors.required">
+          Recipe instruction is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <button type="submit" 
+        (click)="updateRecipe(recipe_title.value, recipe_instruction.value, recipe_prepTime.value)"
+        [disabled]="recipeForm.pristine || recipeForm.invalid" 
+        class="btn btn-primary">Edit recipe</button>
+      </div>
+    </form>
+  </div>
+</div>
